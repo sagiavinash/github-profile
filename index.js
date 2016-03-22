@@ -1,22 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
 import GithubProfile from './components/GithubProfile';
-import GithubRecruiterRoot from './reducers';
+import store from "./store/index.js";
+import { loadRepos } from "./actionCreators";
 
-const store = createStore(GithubProfileRoot);
 const rootEl = document.getElementById('root');
 
 function render() {
+  console.log(store.getState());
+  
   ReactDOM.render(
     <GithubProfile
-      value={store.getState()}
-      onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
-      onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
+      reposData={store.getState()}
+      onLoadRepos={() => loadRepos("sagiavinash")}
     />,
     rootEl
   );
 }
 
 render();
-store.subscribe(render);
+store.subscribe(function() {
+  render();
+});

@@ -1,10 +1,7 @@
-export default function GithubProfileRoot(state = 0, action) {
+export default function rootReducer(state = [], action) {
   switch (action.type) {
-    case 'INCREMENT': {
-      return state + 1;
-    }
-    case 'DECREMENT': {
-      return state - 1;
+    case 'LOAD_REPOS': {
+      return action.data;
     }
     default: {
       return state;
