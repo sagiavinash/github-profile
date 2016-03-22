@@ -23,7 +23,14 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: [ 'babel' ],
+        loader: "babel",
+        query: {
+           presets: [
+            require.resolve('babel-preset-es2015'),
+            require.resolve('babel-preset-react'),
+            require.resolve('babel-preset-stage-0')
+          ]
+        },
         exclude: /node_modules/,
         include: __dirname
       }

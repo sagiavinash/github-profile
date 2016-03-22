@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import GithubProfile from './components/GithubProfile';
 import store from "./store/index.js";
-import { loadRepos } from "./actionCreators";
+import { loadRepos, changeUsername } from "./actionCreators";
 
 const rootEl = document.getElementById('root');
 
@@ -11,8 +11,9 @@ function render() {
   
   ReactDOM.render(
     <GithubProfile
-      reposData={store.getState()}
-      onLoadRepos={() => loadRepos("sagiavinash")}
+      appData={store.getState()}
+      onUsernameChange={changeUsername}
+      onLoadRepos={(username) => loadRepos(username)}
     />,
     rootEl
   );
